@@ -14,11 +14,11 @@
 Route::get('/', function () {
     return view('auth/login');
 });
+//Route::get('/deptos',function(){
+//    return view('departamentos.deptos'); 
+//})->name('depto');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/deptos','DepartamentosController@index')->name('depto');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
