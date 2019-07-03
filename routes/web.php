@@ -18,7 +18,8 @@ Route::get('/', function () {
 //    return view('departamentos.deptos'); 
 //})->name('depto');
 
-Route::get('/deptos','DepartamentosController@index')->name('depto');
 Auth::routes();
+Route::get('/deptos','DepartamentosController@index')->name('depto');
+Route::post('/teste','DepartamentosController@teste')->name('sierra');
 
 Route::get('/home', 'HomeController@index')->name('home');

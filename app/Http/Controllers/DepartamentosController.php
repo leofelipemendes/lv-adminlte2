@@ -23,6 +23,11 @@ class DepartamentosController extends Controller
      */
     public function index()
     {
-        return view('departamentos.deptos');
+        return view('departamentos.departamentos');
+    }
+    
+    public function teste(Request $request) 
+    {
+        dd($request->all());        
     }
 }

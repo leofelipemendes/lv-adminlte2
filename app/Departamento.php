@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Departamento extends Model
 {
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome','descricao'];
     
 }
