@@ -20,6 +20,6 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/deptos','DepartamentosController@index')->name('depto');
-Route::post('/teste','DepartamentosController@teste')->name('sierra');
+Route::post('/deptos/store','DepartamentosController@store')->name('store');
 
 Route::get('/home', 'HomeController@index')->name('home');
