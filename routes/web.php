@@ -19,7 +19,8 @@ Route::get('/', function () {
 //})->name('depto');
 
 Auth::routes();
-Route::get('/deptos','DepartamentosController@index')->name('depto');
-Route::post('/deptos/store','DepartamentosController@store')->name('store');
+Route::get('/deptos','DepartamentosController@index')->name('depto_index');
+Route::get('/deptos/create','DepartamentosController@create')->name('depto_create');
+Route::post('/deptos/store','DepartamentosController@store')->name('depto_store');
 
 Route::get('/home', 'HomeController@index')->name('home');

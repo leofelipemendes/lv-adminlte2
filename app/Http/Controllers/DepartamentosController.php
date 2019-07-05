@@ -22,7 +22,12 @@ class DepartamentosController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('departamentos.departamentos');
+        $deptos = Departamento::all();
+        return view('departamentos.index', [
+            'deptos' => $deptos,
+            'page_title' => 'Departamentos',
+            'page_description' => 'Lista de departamentos'
+                ]);
     }
 
     public function store(Request $request) {
@@ -31,12 +36,16 @@ class DepartamentosController extends Controller {
             'descricao' => 'required'            
         ]);
         $deptos = new Departamento([
-            'nome' => 'required',
-            'descricao' => 'required'            
+            'nome' => $request->input('nome'),
+            'descricao' => $request->input('descricao')    
         ]);
         $deptos->save();
         
-        return redirect()->route('depto')->with('success', 'Stock has been added');
+        return redirect()->route('depto_index')->with('success', 'Stock has been added');
+    }
+    
+    public function create() {
+        return view('departamentos.departamentos');
     }
 
 }
