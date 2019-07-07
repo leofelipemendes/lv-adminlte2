@@ -4,30 +4,40 @@
 <section class="content-header">
     <h1>
         {{ $page_title or "Page Title" }}
-        <small>{{ $page_description or null }}</small>
     </h1>
-    <!-- You can dynamically generate breadcrumbs here -->
+<!--     You can dynamically generate breadcrumbs here 
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
         <li class="active">Here</li>
-    </ol>
+    </ol>-->
 </section>
 @endsection
 @section('content')
 <div class="row">
-    <div class="col-sm-6"></div>
     <div class="col-sm-6 actions">
-        <div class="pull-right">
+        <div class="pull-left">
             <a href="{{ route('depto_create') }}" class="btn btn-primary">
                 <i class="fa fa-plus-circle"></i>
                 NOVO
             </a>
         </div>
+        
+    </div>
+    <div class="col-sm-6"></div>
+    <div class="col-sm-10">
+        @if ($message = Session::get('success'))
+        <br/>
+        <div class="alert alert-info alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>	
+            <strong>{{ $message }}</strong>
+        </div>
+        @endif
     </div>
 </div>
+<div class="row"><br/></div>
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title">Bordered Table</h3>
+        <h3 class="box-title">{{ $page_description or null }}</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -35,11 +45,23 @@
             <tr>
                 <th>Nome</th>
                 <th>Descrição</th>
+                <th></th>
             </tr>
             @foreach($deptos as $depto)
             <tr>
                 <td>{{ $depto->nome }}</td>
                 <td>{{ $depto->descricao }}</td>
+                <td>
+                    <a href="{{ route('depto_edit',['id'=>$depto->id])}}">
+                        <i class="fa fa-plus-square"></i>
+                    </a>
+                    <a href="{{route('depto_disable',['id'=>$depto->id])}}">
+                        <i class="fa fa-minus-square"></i>
+                    </a>
+                    
+                    
+                    
+                </td>
             </tr>
             @endforeach
         </table>

@@ -10,5 +10,17 @@
             <file>file:/home/leo/dev/layout/resources/views/departamentos/departamentos.blade.php</file>
             <file>file:/home/leo/dev/layout/app/Http/Middleware/RedirectIfAuthenticated.php</file>
         </group>
+        <group name="Estudo">
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/database/factories/UserFactory.php</file>
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/resources/views/departamentos/index.blade.php</file>
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/resources/views/departamentos/departamentos.blade.php</file>
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/database/seeds/UserTableSeeder.php</file>
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/app/Providers/AppServiceProvider.php</file>
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/database/seeds/DatabaseSeeder.php</file>
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/app/Http/Controllers/DepartamentosController.php</file>
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/resources/views/layouts/sidebar.blade.php</file>
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/.env</file>
+            <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/routes/web.php</file>
+        </group>
     </open-files>
 </project-private>

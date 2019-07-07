@@ -45,7 +45,33 @@ class DepartamentosController extends Controller {
     }
     
     public function create() {
-        return view('departamentos.departamentos');
+        
+        return view('departamentos.departamentos',[
+            'page_title' => 'Departamentos',
+            'page_description' => 'Lista de departamentos'
+        ]);
+    }
+    
+    public function edit($id) {
+        
+        $deptos = Departamento::find($id);
+        //dd($deptos);
+        return view('departamentos.departamentos',[
+            'deptos' => $deptos,
+            'page_title' => 'Departamentos',
+            'page_description' => 'Lista de departamentos'
+        ]);
+    }
+    
+    public function update(Request $request,$id) 
+    {
+        $deptos = Departamento::find($id);
+        
+        $deptos->nome = $request->nome;
+        $deptos->descricao = $request->descricao;
+        $deptos->update();
+        
+       return redirect()->route('depto_index')->with('success', 'Stock has been added');
     }
 
 }
