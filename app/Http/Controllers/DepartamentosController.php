@@ -73,5 +73,14 @@ class DepartamentosController extends Controller {
         
        return redirect()->route('depto_index')->with('success', 'Stock has been added');
     }
+    
+    public function disable($id) {
+        
+        $deptos = Departamento::find($id);
+        
+        $deptos->delete();
+        
+        return redirect()->route('depto_index')->with('success', 'Deleted!');
+    }
 
 }
