@@ -18,7 +18,13 @@ class DepartamentoValidator extends LaravelValidator
      * @var array
      */
     protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_CREATE => [
+            'nome' => 'required|unique:departamentos',
+            'descricao' => 'required'
+        ],
+        ValidatorInterface::RULE_UPDATE => [
+            'nome' => 'required|unique:departamentos',
+            'descricao' => 'required'
+        ],
     ];
 }

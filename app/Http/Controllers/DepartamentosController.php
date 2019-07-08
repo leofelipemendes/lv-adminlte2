@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 use App\Repositories\DepartamentoRepository;
 use App\Validators\DepartamentoValidator;
+use Illuminate\Contracts\Validation\Validator;
 
 class DepartamentosController extends Controller {
 
