@@ -3,17 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Departamento;
+use App\Repositories\DepartamentoRepository;
+use App\Validators\DepartamentoValidator;
 
 class DepartamentosController extends Controller {
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var DepartamentoRepository
      */
-    public function __construct() {
+    protected $repository;
+
+    /**
+     * @var DepartamentoValidator
+     */
+    protected $validator;
+
+    /**
+     * DepartsController constructor.
+     *
+     * @param DepartamentoRepository $repository
+     * @param DepartamentoValidator $validator
+     */
+    public function __construct(DepartamentoRepository $repository, DepartamentoValidator $validator) {
         $this->middleware('auth');
+        $this->repository = $repository;
+        $this->validator  = $validator;
     }
 
     /**
@@ -22,7 +36,17 @@ class DepartamentosController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $deptos = Departamento::all();
+        
+        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $deptos = $this->repository->all();
+
+        if (request()->wantsJson()) {
+
+            return response()->json([
+                'data' => $departs,
+            ]);
+        }
+        
         return view('departamentos.index', [
             'deptos' => $deptos,
             'page_title' => 'Departamentos',
@@ -31,17 +55,37 @@ class DepartamentosController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'nome' => 'required',
-            'descricao' => 'required'            
-        ]);
-        $deptos = new Departamento([
-            'nome' => $request->input('nome'),
-            'descricao' => $request->input('descricao')    
-        ]);
-        $deptos->save();
         
-        return redirect()->route('depto_index')->with('success', 'Stock has been added');
+        try {
+
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+
+            $deptos = $this->repository->create($request->all());
+
+            $response = [
+                'message' => 'Departamento adicionado.',
+                'data'    => $deptos->toArray(),
+            ];
+
+            if ($request->wantsJson()) {
+
+                return response()->json($response);
+            }
+
+            return redirect()->route('depto_index')->with('success', $response['message']);
+        } catch (ValidatorException $e) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'error'   => true,
+                    'message' => $e->getMessageBag()
+                ]);
+            }
+
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
+        
+        
+        
     }
     
     public function create() {
@@ -53,9 +97,8 @@ class DepartamentosController extends Controller {
     }
     
     public function edit($id) {
-        
-        $deptos = Departamento::find($id);
-        //dd($deptos);
+        $deptos = $this->repository->find($id);
+
         return view('departamentos.departamentos',[
             'deptos' => $deptos,
             'page_title' => 'Departamentos',
@@ -65,20 +108,51 @@ class DepartamentosController extends Controller {
     
     public function update(Request $request,$id) 
     {
-        $deptos = Departamento::find($id);
         
-        $deptos->nome = $request->nome;
-        $deptos->descricao = $request->descricao;
-        $deptos->update();
-        
-       return redirect()->route('depto_index')->with('success', 'Stock has been added');
+        try {
+
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+
+            $deptos = $this->repository->update($request->all(), $id);
+
+            $response = [
+                'message' => 'Departamento atualizado',
+                'data'    => $deptos->toArray(),
+            ];
+
+            if ($request->wantsJson()) {
+
+                return response()->json($response);
+            }
+            
+            return redirect()->route('depto_index')->with('success', $response['message']);
+
+        } catch (ValidatorException $e) {
+
+            if ($request->wantsJson()) {
+
+                return response()->json([
+                    'error'   => true,
+                    'message' => $e->getMessageBag()
+                ]);
+            }
+
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
+       
     }
     
     public function disable($id) {
         
-        $deptos = Departamento::find($id);
-        
-        $deptos->delete();
+        $deptos = $this->repository->delete($id);
+
+        if (request()->wantsJson()) {
+
+            return response()->json([
+                'message' => 'Depart deleted.',
+                'deleted' => $deleted,
+            ]);
+        }
         
         return redirect()->route('depto_index')->with('success', 'Deleted!');
     }
