@@ -32,6 +32,8 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="{{ route('cliente_index') }}"><i class="fa fa-link"></i> <span>Clientes</span></a></li>
+        <li class="active"><a href="{{ route('fornecedor_index') }}"><i class="fa fa-link"></i> <span>Fornecedores</span></a></li>
         <li class="active"><a href="{{ route('depto_index') }}"><i class="fa fa-link"></i> <span>Departamentos</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
         <li class="treeview">

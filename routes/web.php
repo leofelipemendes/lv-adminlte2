@@ -26,4 +26,18 @@ Route::put('/deptos/update/{id}','DepartamentosController@update')->name('depto_
 Route::get('/deptos/disable/{id}','DepartamentosController@disable')->name('depto_disable');
 Route::post('/deptos/store','DepartamentosController@store')->name('depto_store');
 
+Route::get('/cliente','ClientesController@index')->name('cliente_index');
+Route::get('/cliente/create','ClientesController@create')->name('cliente_create');
+Route::get('/cliente/edit/{id}','ClientesController@edit')->name('cliente_edit');
+Route::put('/cliente/update/{id}','ClientesController@update')->name('cliente_update');
+Route::get('/cliente/disable/{id}','ClientesController@disable')->name('cliente_disable');
+Route::post('/cliente/store','ClientesController@store')->name('cliente_store');
+
+Route::get('/fornecedor','FornecedoresController@index')->name('fornecedor_index');
+Route::get('/fornecedor/create','FornecedoresController@create')->name('fornecedor_create');
+Route::get('/fornecedor/edit/{id}','FornecedoresController@edit')->name('fornecedor_edit');
+Route::put('/fornecedor/update/{id}','FornecedoresController@update')->name('fornecedor_update');
+Route::get('/fornecedor/disable/{id}','FornecedoresController@disable')->name('fornecedor_disable');
+Route::post('/fornecedor/store','FornecedoresController@store')->name('fornecedor_store');
+
 Route::get('/home', 'HomeController@index')->name('home');

@@ -46,7 +46,7 @@ class DepartamentosController extends Controller {
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $departs,
+                'data' => $deptos,
             ]);
         }
         
