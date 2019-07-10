@@ -24,7 +24,23 @@ class FornecedorUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nomefantasia' => 'required',
+            'razaosocial' => 'required',
+//            'cnpj' => 'required|unique:fornecedores',
+            'iduf' => 'required',
+            'iduf' => 'required',
+            'idmunicipio' => 'required',
+            'idmunicipio' => 'required',
+//            'ie' => 'required|unique:fornecedores',
+//            'im' => 'required|unique:fornecedores',
+//            'matriz' => 'required',
+            'endereco' => 'required',
+            'bairro' => 'required',
+            'numero' => 'required',
+            'complemento' => 'required',
+            'contato' => 'required',
+            'tel_contato' => 'required',   
+
         ];
     }
 }

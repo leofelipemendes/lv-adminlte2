@@ -195,7 +195,7 @@ class ClientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function disable($id)
     {
         $deleted = $this->repository->delete($id);
 
@@ -206,8 +206,8 @@ class ClientesController extends Controller
                 'deleted' => $deleted,
             ]);
         }
-
-        return redirect()->back()->with('message', 'Cliente deleted.');
+        
+        return redirect()->route('cliente_index')->with('success', 'Deleted!');
     }
     
     public function create() {
@@ -217,4 +217,6 @@ class ClientesController extends Controller
             'page_description' => 'Lista de clientes'
         ]);
     }
+    
+    
 }

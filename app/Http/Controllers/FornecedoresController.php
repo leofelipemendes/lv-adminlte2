@@ -68,8 +68,8 @@ class FornecedoresController extends Controller
     public function create() {
         
         return view('fornecedores.fornecedores',[
-            'page_title' => 'Cliente',
-            'page_description' => 'Lista de clientes'
+            'page_title' => 'Fornecedores',
+            'page_description' => 'Lista de fornecedores'
         ]);
     }
 
@@ -84,8 +84,8 @@ class FornecedoresController extends Controller
      */
     public function store(FornecedorCreateRequest $request)
     {
+            
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $fornecedor = $this->repository->create($request->all());
@@ -199,7 +199,7 @@ class FornecedoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function disable($id)
     {
         $deleted = $this->repository->delete($id);
 
@@ -211,6 +211,7 @@ class FornecedoresController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('message', 'Fornecedor deleted.');
+        return redirect()->route('fornecedor_index')->with('success', 'Deleted!');
     }
+    
 }

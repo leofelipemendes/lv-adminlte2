@@ -24,7 +24,17 @@ class ClienteUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-           
+           'nome' => 'required',
+            'rg' => 'required|unique:clientes',
+            'cpf' => 'required',
+            'endereco' => 'required',
+            'bairro' => 'required',
+            'numero' => 'required',
+            'complemento' => 'required',
+            'idcidade' => 'required',
+            'iduf' => 'required',
+            'contato' => 'required',
+            'email' => 'required'
         ];
     }
 }

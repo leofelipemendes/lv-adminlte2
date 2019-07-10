@@ -26,7 +26,7 @@ class ClienteCreateRequest extends FormRequest
         return [
             'nome' => 'required',
             'rg' => 'required',
-            'cpf' => 'required',
+            'cpf' => 'required|unique:clientes',
             'endereco' => 'required',
             'bairro' => 'required',
             'numero' => 'required',
@@ -34,7 +34,7 @@ class ClienteCreateRequest extends FormRequest
             'idcidade' => 'required',
             'iduf' => 'required',
             'contato' => 'required',
-            'email' => 'required'
+            'email' => 'required|unique:clientes'
         ];
     }
 }
