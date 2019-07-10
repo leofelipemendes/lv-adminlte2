@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateDepartamentosTable.
+ * Class CreateEstadosTable.
  */
-class CreateDepartamentosTable extends Migration
+class CreateEstadosTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -15,9 +15,11 @@ class CreateDepartamentosTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('departamentos', function(Blueprint $table) {
+		Schema::create('estados', function(Blueprint $table) {
             $table->increments('id');
-
+            $table->string('sigla');
+            $table->string('descricao');
+            $table->softDeletes();
             $table->timestamps();
 		});
 	}
@@ -29,6 +31,6 @@ class CreateDepartamentosTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('departamentos');
+		Schema::drop('estados');
 	}
 }

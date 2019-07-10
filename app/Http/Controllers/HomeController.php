@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('departamentos.departamentos');
+        return view('departamentos.departamentos',[
+            'page_title' => 'Departamentos',
+            'page_description' => 'Lista de departamentos'
+        ]);
     }
 }
