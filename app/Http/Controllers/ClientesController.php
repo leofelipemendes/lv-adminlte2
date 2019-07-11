@@ -11,6 +11,7 @@ use App\Http\Requests\ClienteCreateRequest;
 use App\Http\Requests\ClienteUpdateRequest;
 use App\Repositories\ClienteRepository;
 use App\Validators\ClienteValidator;
+use \App\Entities\Estado;
 
 /**
  * Class ClientesController.
@@ -212,9 +213,11 @@ class ClientesController extends Controller
     
     public function create() {
         
+        $estados = Estado::pluck('descricao','id');
         return view('clientes.clientes',[
             'page_title' => 'Cliente',
-            'page_description' => 'Lista de clientes'
+            'page_description' => 'Lista de clientes',
+            'estados' => $estados
         ]);
     }
     
