@@ -210,20 +210,22 @@
     </div>
 </div>
 @endsection 
-@section('script')
+@section('scripts')
 <script>
-    $('iduf').on('change',function(){
+    $('#iduf').on('change',function(){
+
        getMunicipios($(this).val()); 
     });
     
     function getMunicipios(iduf){
-        $.get("{{route('municipios',['id'=>"+iduf+"])}}",function(data){
-            $('#idcidade').html($data);
+        $.get('/municipios/'+iduf,function(data){
+            $('#idcidade').html(data);
         });
     }
     
-    $(function(){
+    $(document).ready(function () {
         getMunicipios($('#iduf').val());
     });
+    
 </script>
 @endsection
