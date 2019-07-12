@@ -110,16 +110,24 @@ class MunicipiosController extends Controller
      */
     public function show($id)
     {
-        $municipio = $this->repository->find($id);
+        $municipios = $this->repository->findWhere([
+            'iduf'=>$id
+                ])->pluck('nome','id');
+        
+        $list = '';
+        foreach ($municipios as $key => $value) {
+            $list .= "<option value='" . $key . "'>" . $value . "</option>";
+        }
+    return $list;
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $municipio,
+                'data' => $municipios,
             ]);
         }
 
-        return view('municipios.show', compact('municipio'));
+        return $list;
     }
 
     /**

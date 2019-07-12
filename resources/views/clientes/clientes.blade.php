@@ -106,26 +106,28 @@
                     </span>
                     @endif
                 </div>
+
                 <div class="form-group{{ $errors->has('iduf') ? ' has-error' : '' }}">
                     {!! Form::Label('iduf', 'Estado') !!}
-                    {!! Form::select('iduf', $estados, null, ['class' => 'form-control']) !!}
+                    {!! Form::select('iduf', $estados, null, ['class' => 'form-control','placeholder' => 'Selecione...']) !!}
                     @if ($errors->has('iduf'))
                     <span class="help-block">
                         <strong>{{ $errors->first('iduf') }}</strong>
                     </span>
                     @endif
                 </div>
-                
+
                 <div class="form-group{{ $errors->has('idcidade') ? ' has-error' : '' }}">
                     {!! Form::label('idcidade','Cidade',['class'=>'form-label']) !!}
-                    {!! Form::select('idcidade',[],null,['class'=>'form-control']) !!}
+                    {!! Form::select('idcidade',$municipios,null,['class'=>'form-control']) !!}
+                    
                     @if ($errors->has('idcidade'))
                     <span class="help-block">
                         <strong>{{ $errors->first('idcidade') }}</strong>
                     </span>
                     @endif
                 </div>
-                
+
                 <div class="form-group{{ $errors->has('ddd_res') ? ' has-error' : '' }}">
                     {!! Form::label('ddd_res','DDD Res.',['class'=>'form-label']) !!}
                     {!! Form::text('ddd_res',null,['class'=>'form-control']) !!}

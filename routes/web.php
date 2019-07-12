@@ -39,14 +39,6 @@ Route::get('/fornecedor/edit/{id}','FornecedoresController@edit')->name('fornece
 Route::put('/fornecedor/update/{id}','FornecedoresController@update')->name('fornecedor_update');
 Route::get('/fornecedor/disable/{id}','FornecedoresController@disable')->name('fornecedor_disable');
 Route::post('/fornecedor/store','FornecedoresController@store')->name('fornecedor_store');
-
-Route::get('/municipios/{id}',function($id){
-    $municipios = App\Entities\Municipio::where('iduf',$id)->pluck('nome','id');
-    $list = '';
-        foreach ($municipios as $key => $value) {
-            $list .= "<option value='" . $key . "'>" . $value . "</option>";
-        }
-    return $list;
-})->name('municipios');
+Route::get('/municipios/{id}','MunicipiosController@show')->name('municipios');
 
 Route::get('/home', 'HomeController@index')->name('home');

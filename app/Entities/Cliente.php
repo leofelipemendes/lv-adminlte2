@@ -40,5 +40,15 @@ class Cliente extends Model implements Transformable
         'contato',
         'email'
     ];
+    
+    public function estado() {
+        
+        return $this->hasOne('App\Entities\Estado');
+    }
+    
+    public function municipio() {
+        
+        return $this->hasOne('App\Entities\Municipio');
+    }
 
 }

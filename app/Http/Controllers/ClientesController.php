@@ -12,6 +12,7 @@ use App\Http\Requests\ClienteUpdateRequest;
 use App\Repositories\ClienteRepository;
 use App\Validators\ClienteValidator;
 use \App\Entities\Estado;
+use \App\Entities\Municipio;
 
 /**
  * Class ClientesController.
@@ -137,10 +138,14 @@ class ClientesController extends Controller
     public function edit($id)
     {
         $clientes = $this->repository->find($id);
+        $estados = Estado::pluck('descricao','id');
+        $municipios = Municipio::pluck('nome','id');
         return view('clientes.clientes',[
             'clientes' => $clientes,
             'page_title' => 'Cliente',
-            'page_description' => 'Lista de clientes'
+            'page_description' => 'Lista de clientes',
+            'estados' => $estados,
+            'municipios' => $municipios
         ]);
 
     }
