@@ -114,24 +114,9 @@
                     </span>
                     @endif
                 </div>
-                <div class="form-group{{ $errors->has('idmunicipio') ? ' has-error' : '' }}">
-                    {!! Form::label('idmunicipio','idmunicipio',['class'=>'form-label']) !!}
-                    {!! Form::text('idmunicipio',null,['class'=>'form-control']) !!}
-                    @if ($errors->has('idmunicipio'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('idmunicipio') }}</strong>
-                    </span>
-                    @endif
-                </div>
-                <div class="form-group{{ $errors->has('iduf') ? ' has-error' : '' }}">
-                    {!! Form::label('iduf','iduf',['class'=>'form-label']) !!}
-                    {!! Form::text('iduf',null,['class'=>'form-control']) !!}
-                    @if ($errors->has('iduf'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('iduf') }}</strong>
-                    </span>
-                    @endif
-                </div>
+                
+                include('partials.estado_municipios')
+                
                 <div class="form-group{{ $errors->has('im') ? ' has-error' : '' }}">
                     {!! Form::label('im','im',['class'=>'form-label']) !!}
                     {!! Form::text('im',null,['class'=>'form-control']) !!}

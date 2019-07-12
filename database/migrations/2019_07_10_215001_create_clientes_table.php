@@ -26,8 +26,8 @@ class CreateClientesTable extends Migration
             $table->string('complemento')->nullable();
             $table->integer('iduf')->unsigned();
             $table->foreign('iduf')->references('id')->on('estados');
-            $table->integer('idcidade')->unsigned();
-            $table->foreign('idcidade')->references('id')->on('municipios');
+            $table->integer('idmunicipio')->unsigned();
+            $table->foreign('idmunicipio')->references('id')->on('municipios');
             $table->integer('ddd_res')->nullable();
             $table->integer('tel_res')->nullable();
             $table->integer('ddd_cel')->nullable();

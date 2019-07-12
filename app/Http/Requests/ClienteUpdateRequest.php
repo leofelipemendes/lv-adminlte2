@@ -25,14 +25,15 @@ class ClienteUpdateRequest extends FormRequest
     {
         return [
            'nome' => 'required',
-            'rg' => 'required|unique:clientes',
+            'rg' => 'required',
             'cpf' => 'required',
             'endereco' => 'required',
             'bairro' => 'required',
             'numero' => 'required',
             'complemento' => 'required',
-            'idcidade' => 'required',
             'iduf' => 'required',
+            'idmunicipio' => 'required',
+            
             'contato' => 'required',
             'email' => 'required'
         ];

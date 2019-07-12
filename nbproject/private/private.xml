@@ -15,19 +15,7 @@
             <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/routes/web.php</file>
         </group>
         <group>
-            <file>file:/home/leo/dev/layout/config/app.php</file>
-            <file>file:/home/leo/dev/layout/app/Departamento.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Controllers/TestesController.php</file>
-            <file>file:/home/leo/dev/layout/app/Entities/Departamento.php</file>
-            <file>file:/home/leo/dev/layout/app/Providers/RepositoryServiceProvider.php</file>
-            <file>file:/home/leo/dev/layout/routes/web.php</file>
-            <file>file:/home/leo/dev/layout/app/Validators/DepartamentoValidator.php</file>
-            <file>file:/home/leo/dev/layout/config/repository.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Controllers/DepartamentosController.php</file>
-            <file>file:/home/leo/dev/layout/app/Repositories/DepartamentoRepository.php</file>
-            <file>file:/home/leo/dev/layout/app/Providers/AppServiceProvider.php</file>
-            <file>file:/home/leo/dev/layout/composer.json</file>
-            <file>file:/home/leo/dev/layout/app/Repositories/DepartamentoRepositoryEloquent.php</file>
+            <file>file:/home/leo/dev/layout/app/Http/Controllers/ClientesController.php</file>
         </group>
     </open-files>
 </project-private>

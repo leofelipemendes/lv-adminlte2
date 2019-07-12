@@ -29,7 +29,7 @@ class Cliente extends Model implements Transformable
         'bairro',
         'numero',
         'complemento',
-        'idcidade',
+        'idmunicipio',
         'iduf',
         'ddd_res',
         'tel_res',

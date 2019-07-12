@@ -8,9 +8,14 @@
     @endif
 </div>
 
-<div class="form-group{{ $errors->has('idcidade') ? ' has-error' : '' }}">
-    {!! Form::label('idcidade','Cidade',['class'=>'form-label']) !!}
-    {!! Form::select('idcidade',[],null,['class'=>'form-control']) !!}
+<div class="form-group{{ $errors->has('idmunicipio') ? ' has-error' : '' }}">
+    {!! Form::label('idmunicipio','Cidade',['class'=>'form-label']) !!}
+    @if(isset($municipios))
+    {!! Form::select('idmunicipio',$municipios,null,['class'=>'form-control']) !!}
+    @else
+    {!! Form::select('idmunicipio',[],null,['class'=>'form-control']) !!}
+    @endif
+
     @if ($errors->has('idcidade'))
     <span class="help-block">
         <strong>{{ $errors->first('idcidade') }}</strong>
@@ -20,20 +25,20 @@
 
 @section('scripts')
 <script>
-    $('#iduf').on('change',function(){
+    $('#iduf').on('change', function () {
 
-       getMunicipios($(this).val()); 
+        getMunicipios($(this).val());
     });
-    
-    function getMunicipios(iduf){
-        $.get('/municipios/'+iduf,function(data){
-            $('#idcidade').html(data);
+
+    function getMunicipios(iduf) {
+        $.get('/municipios/' + iduf, function (data) {
+            $('#idmunicipio').html(data);
         });
     }
-    
-    $(document).ready(function () {
-        getMunicipios($('#iduf').val());
-    });
-    
+
+//    $(document).ready(function () {
+//        getMunicipios($('#iduf').val());
+//    });
+
 </script>
 @endsection
