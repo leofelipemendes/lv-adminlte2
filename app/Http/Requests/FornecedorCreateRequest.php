@@ -23,6 +23,7 @@ class FornecedorCreateRequest extends FormRequest
      */
     public function rules()
     {
+        $this->sanitize();
         return [
             'nomefantasia' => 'required',
             'razaosocial' => 'required',
@@ -42,4 +43,18 @@ class FornecedorCreateRequest extends FormRequest
             'tel_contato' => 'required',        
         ];
     }
+    
+    public function sanitize() {
+        
+        $dados = $this->all();
+        
+        $dados['cnpj'] = preg_replace( '/\D+/', '', $dados['cnpj'] );
+        
+        $dados['ie'] = preg_replace( '/\D+/', '', $dados['ie'] );
+        
+        $dados['tel_contato'] = preg_replace( '/\D+/', '', $dados['tel_contato'] );
+        
+        return $this->replace($dados);
+    }
+
 }

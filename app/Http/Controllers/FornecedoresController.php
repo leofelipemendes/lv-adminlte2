@@ -86,7 +86,6 @@ class FornecedoresController extends Controller
      */
     public function store(FornecedorCreateRequest $request)
     {
-            
         try {
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
