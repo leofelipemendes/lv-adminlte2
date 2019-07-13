@@ -21,9 +21,23 @@ class ClienteCreateRequest extends FormRequest {
      * @return array
      */
     public function rules() {
+        
+        $this->sanitize();
+        
         return [
             
         ];
+    }
+    
+    public function sanitize() {
+        
+        $dados = $this->all();
+        
+        $dados['cpf'] = preg_replace( '/\D+/', '', $dados['cpf'] );
+        
+        $dados['rg'] = preg_replace( '/\D+/', '', $dados['rg'] );
+        
+        return $this->replace($dados);
     }
 
 }
