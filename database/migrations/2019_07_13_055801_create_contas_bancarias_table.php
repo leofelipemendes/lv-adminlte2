@@ -15,11 +15,20 @@ class CreateContasBancariasTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('contas_bancarias', function(Blueprint $table) {
-            $table->increments('id');
-
-            $table->timestamps();
-		});
+            Schema::create('contas_bancarias', function(Blueprint $table) {
+                $table->increments('id');
+                $table->string('descricao');
+                $table->integer('idbanco')->unsigned();
+                $table->foreign('idbanco')->references('id')->on('bancos');
+                $table->integer('agencia');
+                $table->integer('dig_ag');
+                $table->integer('nr_conta');
+                $table->integer('dig_conta');
+                $table->integer('tipo_conta');
+                $table->boolean('ativo');
+                $table->softDeletes();
+                $table->timestamps();
+            });
 	}
 
 	/**

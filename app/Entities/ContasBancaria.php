@@ -5,6 +5,7 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class ContasBancaria.
@@ -13,13 +14,22 @@ use Prettus\Repository\Traits\TransformableTrait;
  */
 class ContasBancaria extends Model implements Transformable
 {
-    use TransformableTrait;
+    use TransformableTrait,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'descricao',
+        'idbanco',
+        'agencia',
+        'dig_ag',
+        'nr_conta',
+        'dig_conta',
+        'tipo_conta',
+        'ativo'
+    ];
 
 }

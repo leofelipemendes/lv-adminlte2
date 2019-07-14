@@ -11,7 +11,7 @@ use App\Http\Requests\ContasBancariaCreateRequest;
 use App\Http\Requests\ContasBancariaUpdateRequest;
 use App\Repositories\ContasBancariaRepository;
 use App\Validators\ContasBancariaValidator;
-
+use App\Entities\Banco;
 /**
  * Class ContasBancariasController.
  *
@@ -50,7 +50,7 @@ class ContasBancariasController extends Controller
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $contasBancarias = $this->repository->all();
-
+        $bancos = \App\Entities\Banco::pluck('nome','id');
         if (request()->wantsJson()) {
 
             return response()->json([
@@ -60,12 +60,28 @@ class ContasBancariasController extends Controller
         
         return view('contasBancarias.index',[
             'contasBancarias' => $contasBancarias,
+            'bancos' => $bancos,
             'page_title' => 'ContasBancarias',
             'page_description' => 'Lista de Contas Bancárias'
         ]);
 
 
     }
+    
+    
+    public function create() {
+        
+        $contasBancarias = $this->repository->all();
+        $bancos = Banco::pluck('nome','id');
+        return view('contasBancarias.contasbancarias',[
+            'contasBancarias' => $contasBancarias,
+            'bancos' => $bancos,
+            'page_title' => 'ContasBancarias',
+            'page_description' => 'Lista de Contas Bancárias'
+        ]);
+    }
+    
+    
 
     /**
      * Store a newly created resource in storage.

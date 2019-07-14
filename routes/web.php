@@ -31,7 +31,7 @@ Route::get('/cbanc/create','ContasBancariasController@create')->name('cbanc_crea
 Route::get('/cbanc/edit/{id}','ContasBancariasController@edit')->name('cbanc_edit');
 Route::put('/cbanc/update/{id}','ContasBancariasController@update')->name('cbanc_update');
 Route::get('/cbanc/disable/{id}','ContasBancariasController@disable')->name('cbanc_disable');
-Route::post('/cbanc/store','ContasBancariasController@store')->name('depto_store');
+Route::post('/cbanc/store','ContasBancariasController@store')->name('cbanc_store');
 
 Route::get('/categoria','CategoriasController@index')->name('categ_index');
 Route::get('/categoria/create','CategoriasController@create')->name('categ_create');
