@@ -43,7 +43,7 @@
                 {!! Form::open(['route' => 'fornecedor_store','class' => 'form']) !!}
                 @endif
                 <div class="form-group {{ $errors->has('razaosocial') ? ' has-error' : '' }}">
-                    {!! Form::label('razaosocial','razaosocial',['class'=>'form-label']) !!}
+                    {!! Form::label('razaosocial','Razão Social',['class'=>'form-label']) !!}
                     {!! Form::text('razaosocial',null,['class'=>'form-control']) !!}
                     @if ($errors->has('razaosocial'))
                     <span class="help-block">
@@ -52,7 +52,7 @@
                     @endif
                 </div>
                 <div class="form-group {{ $errors->has('nomefantasia') ? ' has-error' : '' }}">
-                    {!! Form::label('nomefantasia','nomefantasia',['class'=>'form-label']) !!}
+                    {!! Form::label('nomefantasia','Nome Fantasia',['class'=>'form-label']) !!}
                     {!! Form::text('nomefantasia',null,['class'=>'form-control']) !!}
                     @if ($errors->has('nomefantasia'))
                     <span class="help-block">
@@ -60,9 +60,9 @@
                     </span>
                     @endif
                 </div>
-                <div class="form-group {{ $errors->has('cnpj') ? ' has-error' : '' }}">
-                    {!! Form::label('cnpj','cnpj',['class'=>'form-label']) !!}
-                    {!! Form::text('cnpj',null,['class'=>'form-control']) !!}
+                <div class="form-group {{ $errors->has('cnpj') ? ' has-error' : '' }}" >
+                    {!! Form::label('cnpj','CNPJ',['class'=>'form-label']) !!}
+                    {!! Form::text('cnpj',null,['class'=>'form-control','id'=>'cnpj']) !!}
                     @if ($errors->has('cnpj'))
                     <span class="help-block">
                         <strong>{{ $errors->first('cnpj') }}</strong>
@@ -70,8 +70,8 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('ie') ? ' has-error' : '' }}">
-                    {!! Form::label('ie','ie',['class'=>'form-label']) !!}
-                    {!! Form::text('ie',null,['class'=>'form-control']) !!}
+                    {!! Form::label('ie','IE',['class'=>'form-label']) !!}
+                    {!! Form::text('ie',null,['class'=>'form-control','id'=>'ie']) !!}
                     @if ($errors->has('ie'))
                     <span class="help-block">
                         <strong>{{ $errors->first('ie') }}</strong>
@@ -79,7 +79,7 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('endereco') ? ' has-error' : '' }}">
-                    {!! Form::label('endereco','endereco',['class'=>'form-label']) !!}
+                    {!! Form::label('endereco','Endereco',['class'=>'form-label']) !!}
                     {!! Form::text('endereco',null,['class'=>'form-control']) !!}
                     @if ($errors->has('endereco'))
                     <span class="help-block">
@@ -88,7 +88,7 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}">
-                    {!! Form::label('bairro','bairro',['class'=>'form-label']) !!}
+                    {!! Form::label('bairro','Bairro',['class'=>'form-label']) !!}
                     {!! Form::text('bairro',null,['class'=>'form-control']) !!}
                     @if ($errors->has('bairro'))
                     <span class="help-block">
@@ -97,7 +97,7 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}">
-                    {!! Form::label('numero','numero',['class'=>'form-label']) !!}
+                    {!! Form::label('numero','Numero',['class'=>'form-label']) !!}
                     {!! Form::text('numero',null,['class'=>'form-control']) !!}
                     @if ($errors->has('numero'))
                     <span class="help-block">
@@ -106,7 +106,7 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('complemento') ? ' has-error' : '' }}">
-                    {!! Form::label('complemento','complemento',['class'=>'form-label']) !!}
+                    {!! Form::label('complemento','Complemento',['class'=>'form-label']) !!}
                     {!! Form::text('complemento',null,['class'=>'form-control']) !!}
                     @if ($errors->has('complemento'))
                     <span class="help-block">
@@ -115,10 +115,10 @@
                     @endif
                 </div>
                 
-                include('partials.estado_municipios')
+                @include('partials.estado_municipios')
                 
                 <div class="form-group{{ $errors->has('im') ? ' has-error' : '' }}">
-                    {!! Form::label('im','im',['class'=>'form-label']) !!}
+                    {!! Form::label('im','IM',['class'=>'form-label']) !!}
                     {!! Form::text('im',null,['class'=>'form-control']) !!}
                     @if ($errors->has('im'))
                     <span class="help-block">
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('contato') ? ' has-error' : '' }}">
-                    {!! Form::label('contato','contato',['class'=>'form-label']) !!}
+                    {!! Form::label('contato','Contato',['class'=>'form-label']) !!}
                     {!! Form::text('contato',null,['class'=>'form-control']) !!}
                     @if ($errors->has('contato'))
                     <span class="help-block">
@@ -137,8 +137,8 @@
                     @endif
                 </div>               
                 <div class="form-group{{ $errors->has('tel_contato') ? ' has-error' : '' }}">
-                    {!! Form::label('tel_contato','tel_contato',['class'=>'form-label']) !!}
-                    {!! Form::text('tel_contato',null,['class'=>'form-control']) !!}
+                    {!! Form::label('tel_contato','Telefone',['class'=>'form-label']) !!}
+                    {!! Form::text('tel_contato',null,['class'=>'form-control','id'=>'tel_contato']) !!}
                     @if ($errors->has('tel_contato'))
                     <span class="help-block">
                         <strong>{{ $errors->first('tel_contato') }}</strong>
@@ -156,4 +156,14 @@
         </div>
     </div>
 </div>
+
 @endsection 
+@section('scripts')
+
+<script>
+    $("#cnpj").inputmask("99.999.999/9999-99");
+//    $("#ie").inputmask("999.999.999.9999");
+//    $("#tel_contato").inputmask("(99)99999-9999");
+    
+</script>
+@endsection

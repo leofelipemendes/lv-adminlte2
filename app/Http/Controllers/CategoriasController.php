@@ -7,36 +7,35 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\FornecedorCreateRequest;
-use App\Http\Requests\FornecedorUpdateRequest;
-use App\Repositories\FornecedorRepository;
-use App\Validators\FornecedorValidator;
-use App\Entities\Estado;
+use App\Http\Requests\CategoriaCreateRequest;
+use App\Http\Requests\CategoriaUpdateRequest;
+use App\Repositories\CategoriaRepository;
+use App\Validators\CategoriaValidator;
 
 /**
- * Class FornecedoresController.
+ * Class CategoriasController.
  *
  * @package namespace App\Http\Controllers;
  */
-class FornecedoresController extends Controller
+class CategoriasController extends Controller
 {
     /**
-     * @var FornecedorRepository
+     * @var CategoriaRepository
      */
     protected $repository;
 
     /**
-     * @var FornecedorValidator
+     * @var CategoriaValidator
      */
     protected $validator;
 
     /**
-     * FornecedoresController constructor.
+     * CategoriasController constructor.
      *
-     * @param FornecedorRepository $repository
-     * @param FornecedorValidator $validator
+     * @param CategoriaRepository $repository
+     * @param CategoriaValidator $validator
      */
-    public function __construct(FornecedorRepository $repository, FornecedorValidator $validator)
+    public function __construct(CategoriaRepository $repository, CategoriaValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -50,51 +49,42 @@ class FornecedoresController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $fornecedores = $this->repository->all();
+        $categorias = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $fornecedores,
+                'data' => $categorias,
             ]);
         }
 
-        return view('fornecedores.index',[
-            'fornecedores' => $fornecedores,
-            'page_title' => 'Fornecedores',
-            'page_description' => 'Lista de fornecedores'
-        ]);
-    }
-    
-    public function create() {
-        $estados = Estado::pluck('descricao','id');
-        return view('fornecedores.fornecedores',[
-            'page_title' => 'Fornecedores',
-            'page_description' => 'Lista de fornecedores',
-            'estados' => $estados
-        ]);
+         return view('categorias.index', [
+            'categorias' => $categorias,
+            'page_title' => 'Categorias',
+            'page_description' => 'Lista de Categorias'
+                ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  FornecedorCreateRequest $request
+     * @param  CategoriaCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(FornecedorCreateRequest $request)
+    public function store(CategoriaCreateRequest $request)
     {
-            
         try {
+
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $fornecedor = $this->repository->create($request->all());
+            $categorium = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Fornecedor created.',
-                'data'    => $fornecedor->toArray(),
+                'message' => 'Categoria created.',
+                'data'    => $categorium->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -102,7 +92,7 @@ class FornecedoresController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->route('fornecedor_index')->with('success', $response['message']);
+            return redirect()->route('categ_index')->with('success', $response['message']);
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
@@ -114,6 +104,14 @@ class FornecedoresController extends Controller
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
     }
+    
+    public function create() {
+        
+        return view('categorias.categorias',[
+            'page_title' => 'Categorias',
+            'page_description' => 'Lista de Categorias'
+        ]);
+    }
 
     /**
      * Display the specified resource.
@@ -124,16 +122,16 @@ class FornecedoresController extends Controller
      */
     public function show($id)
     {
-        $fornecedor = $this->repository->find($id);
+        $categorium = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $fornecedor,
+                'data' => $categorium,
             ]);
         }
 
-        return view('fornecedores.show', compact('fornecedor'));
+        return view('categorias.show', compact('categorium'));
     }
 
     /**
@@ -145,32 +143,36 @@ class FornecedoresController extends Controller
      */
     public function edit($id)
     {
-        $fornecedores = $this->repository->find($id);
+        $categorias = $this->repository->find($id);
 
-        return view('fornecedores.fornecedores', compact('fornecedores'));
+        return view('categorias.categorias',[
+            'categorias' => $categorias,
+            'page_title' => 'Categorias',
+            'page_description' => 'Lista de Categorias'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  FornecedorUpdateRequest $request
+     * @param  CategoriaUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(FornecedorUpdateRequest $request, $id)
+    public function update(CategoriaUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $fornecedores = $this->repository->update($request->all(), $id);
+            $categorium = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Fornecedor updated.',
-                'data'    => $fornecedores->toArray(),
+                'message' => 'Categoria updated.',
+                'data'    => $categorium->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -178,9 +180,9 @@ class FornecedoresController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->route('fornecedor_index')->with('success', $response['message']);
+            return redirect()->route('categ_index')->with('success', $response['message']);
         } catch (ValidatorException $e) {
-            dd($e->getMessageBag());
+
             if ($request->wantsJson()) {
 
                 return response()->json([
@@ -201,19 +203,33 @@ class FornecedoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function disable($id)
+    public function destroy($id)
     {
         $deleted = $this->repository->delete($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Fornecedor deleted.',
+                'message' => 'Categoria deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->route('fornecedor_index')->with('success', 'Deleted!');
+        return redirect()->back()->with('message', 'Categoria deleted.');
     }
     
+    public function disable($id) {
+        
+        $categoria = $this->repository->delete($id);
+
+        if (request()->wantsJson()) {
+
+            return response()->json([
+                'message' => 'Categoria deleted.',
+                'deleted' => $categoria,
+            ]);
+        }
+        
+        return redirect()->route('categ_index')->with('success', 'Deleted!');
+    }
 }

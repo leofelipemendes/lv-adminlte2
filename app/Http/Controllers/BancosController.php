@@ -7,36 +7,35 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\FornecedorCreateRequest;
-use App\Http\Requests\FornecedorUpdateRequest;
-use App\Repositories\FornecedorRepository;
-use App\Validators\FornecedorValidator;
-use App\Entities\Estado;
+use App\Http\Requests\BancoCreateRequest;
+use App\Http\Requests\BancoUpdateRequest;
+use App\Repositories\BancoRepository;
+use App\Validators\BancoValidator;
 
 /**
- * Class FornecedoresController.
+ * Class BancosController.
  *
  * @package namespace App\Http\Controllers;
  */
-class FornecedoresController extends Controller
+class BancosController extends Controller
 {
     /**
-     * @var FornecedorRepository
+     * @var BancoRepository
      */
     protected $repository;
 
     /**
-     * @var FornecedorValidator
+     * @var BancoValidator
      */
     protected $validator;
 
     /**
-     * FornecedoresController constructor.
+     * BancosController constructor.
      *
-     * @param FornecedorRepository $repository
-     * @param FornecedorValidator $validator
+     * @param BancoRepository $repository
+     * @param BancoValidator $validator
      */
-    public function __construct(FornecedorRepository $repository, FornecedorValidator $validator)
+    public function __construct(BancoRepository $repository, BancoValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -50,51 +49,42 @@ class FornecedoresController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $fornecedores = $this->repository->all();
+        $bancos = $this->repository->all();
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $fornecedores,
+                'data' => $bancos,
             ]);
         }
 
-        return view('fornecedores.index',[
-            'fornecedores' => $fornecedores,
-            'page_title' => 'Fornecedores',
-            'page_description' => 'Lista de fornecedores'
-        ]);
-    }
-    
-    public function create() {
-        $estados = Estado::pluck('descricao','id');
-        return view('fornecedores.fornecedores',[
-            'page_title' => 'Fornecedores',
-            'page_description' => 'Lista de fornecedores',
-            'estados' => $estados
-        ]);
+        return view('bancos.index', [
+            'bancos' => $bancos,
+            'page_title' => 'Bancos',
+            'page_description' => 'Lista de Bancos'
+                ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  FornecedorCreateRequest $request
+     * @param  BancoCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(FornecedorCreateRequest $request)
+    public function store(BancoCreateRequest $request)
     {
-            
         try {
+
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $fornecedor = $this->repository->create($request->all());
+            $banco = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Fornecedor created.',
-                'data'    => $fornecedor->toArray(),
+                'message' => 'Banco created.',
+                'data'    => $banco->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -102,7 +92,7 @@ class FornecedoresController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->route('fornecedor_index')->with('success', $response['message']);
+            return redirect()->route('bancos_index')->with('success', $response['message']);
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
@@ -124,16 +114,16 @@ class FornecedoresController extends Controller
      */
     public function show($id)
     {
-        $fornecedor = $this->repository->find($id);
+        $banco = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $fornecedor,
+                'data' => $banco,
             ]);
         }
 
-        return view('fornecedores.show', compact('fornecedor'));
+        return view('bancos.show', compact('banco'));
     }
 
     /**
@@ -145,32 +135,36 @@ class FornecedoresController extends Controller
      */
     public function edit($id)
     {
-        $fornecedores = $this->repository->find($id);
-
-        return view('fornecedores.fornecedores', compact('fornecedores'));
+        $bancos = $this->repository->find($id);
+        
+        return view('bancos.bancos', [
+            'bancos' => $bancos,
+            'page_title' => 'Bancos',
+            'page_description' => 'Lista de Bancos'
+                ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  FornecedorUpdateRequest $request
+     * @param  BancoUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(FornecedorUpdateRequest $request, $id)
+    public function update(BancoUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $fornecedores = $this->repository->update($request->all(), $id);
+            $banco = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Fornecedor updated.',
-                'data'    => $fornecedores->toArray(),
+                'message' => 'Banco updated.',
+                'data'    => $banco->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -178,9 +172,9 @@ class FornecedoresController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->route('fornecedor_index')->with('success', $response['message']);
+            return redirect()->route('bancos_index')->with('success', $response['message']);
         } catch (ValidatorException $e) {
-            dd($e->getMessageBag());
+
             if ($request->wantsJson()) {
 
                 return response()->json([
@@ -208,12 +202,19 @@ class FornecedoresController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'Fornecedor deleted.',
+                'message' => 'Banco deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->route('fornecedor_index')->with('success', 'Deleted!');
+        return redirect()->route('bancos_index')->with('success', 'Deleted!');
     }
     
+    public function create() {
+        
+        return view('bancos.bancos',[
+            'page_title' => 'Bancos',
+            'page_description' => 'Lista de Bancos'
+        ]);
+    }
 }

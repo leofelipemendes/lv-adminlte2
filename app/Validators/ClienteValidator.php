@@ -18,7 +18,33 @@ class ClienteValidator extends LaravelValidator
      * @var array
      */
     protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_CREATE => [
+            'nome' => 'required',
+            'rg' => 'required|unique:clientes',
+            'cpf' => 'required|unique:clientes',
+            'endereco' => 'required',
+            'bairro' => 'required',
+            'numero' => 'required',
+            'complemento' => 'required',
+            'iduf' => 'required',
+            'idmunicipio' => 'required',
+            
+            'contato' => 'required',
+            'email' => 'required|email'
+        ],
+        ValidatorInterface::RULE_UPDATE => [
+            'nome' => 'required',
+            'rg' => 'required',
+            'cpf' => 'required',
+            'endereco' => 'required',
+            'bairro' => 'required',
+            'numero' => 'required',
+            'complemento' => 'required',
+            'iduf' => 'required',
+            'idmunicipio' => 'required',
+            
+            'contato' => 'required',
+            'email' => 'required|email'
+        ],
     ];
 }

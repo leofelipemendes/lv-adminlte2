@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group {{ $errors->has('rg') ? ' has-error' : '' }}">
                     {!! Form::label('rg','RG',['class'=>'form-label']) !!}
-                    {!! Form::text('rg',null,['class'=>'form-control']) !!}
+                    {!! Form::text('rg',null,['class'=>'form-control','id'=>'rg']) !!}
                     @if ($errors->has('rg'))
                     <span class="help-block">
                         <strong>{{ $errors->first('rg') }}</strong>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
                     {!! Form::label('cpf','CPF',['class'=>'form-label']) !!}
-                    {!! Form::text('cpf',null,['class'=>'form-control']) !!}
+                    {!! Form::text('cpf',null,['class'=>'form-control','id'=>'cpf']) !!}
                     @if ($errors->has('cpf'))
                     <span class="help-block">
                         <strong>{{ $errors->first('cpf') }}</strong>

@@ -22,18 +22,7 @@ class ClienteCreateRequest extends FormRequest {
      */
     public function rules() {
         return [
-            'nome' => 'required',
-            'rg' => 'required',
-            'cpf' => 'required',
-            'endereco' => 'required',
-            'bairro' => 'required',
-            'numero' => 'required',
-            'complemento' => 'required',
-            'iduf' => 'required',
-            'idmunicipio' => 'required',
             
-            'contato' => 'required',
-            'email' => 'required'
         ];
     }
 
