@@ -42,7 +42,7 @@
                 @else
                 {!! Form::open(['route' => 'cbanc_store','class' => 'form']) !!}
                 @endif
-                
+
                 <div class="form-group{{ $errors->has('descricao') ? ' has-error' : '' }}">
                     {!! Form::label('descricao','Descrição',['class'=>'form-label']) !!}
                     {!! Form::text('descricao',null,['class'=>'form-control']) !!}
@@ -52,7 +52,7 @@
                     </span>
                     @endif
                 </div>
-                
+
                 <div class="form-group{{ $errors->has('bancos') ? ' has-error' : '' }}">
                     {!! Form::Label('bancos', 'Banco') !!}
                     {!! Form::select('bancos', $bancos, null, ['class' => 'form-control','placeholder' => 'Selecione...']) !!}
@@ -62,70 +62,104 @@
                     </span>
                     @endif
                 </div>
-                
-                <div class="form-group{{ $errors->has('agencia') ? ' has-error' : '' }}">
-                    {!! Form::label('agencia','Agencia',['class'=>'form-label']) !!}
-                    {!! Form::number('agencia',null,['class'=>'form-control']) !!}
-                    @if ($errors->has('agencia'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('agencia') }}</strong>
-                    </span>
-                    @endif
-                </div>
-                
-                <div class="form-group{{ $errors->has('dig_ag') ? ' has-error' : '' }}">
-                    {!! Form::label('dig_ag','Digito',['class'=>'form-label']) !!}
-                    {!! Form::number('dig_ag',null,['class'=>'form-control']) !!}
-                    @if ($errors->has('dig_ag'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('dig_ag') }}</strong>
-                    </span>
-                    @endif
-                </div>
-                
-                
-                <div class="form-group{{ $errors->has('nr_conta') ? ' has-error' : '' }}">
-                    {!! Form::label('nr_conta','Conta',['class'=>'form-label']) !!}
-                    {!! Form::number('nr_conta',null,['class'=>'form-control']) !!}
-                    @if ($errors->has('nr_conta'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('nr_conta') }}</strong>
-                    </span>
-                    @endif
-                </div>
-                
-                <div class="form-group{{ $errors->has('dig_conta') ? ' has-error' : '' }}">
-                    {!! Form::label('dig_conta','Digito',['class'=>'form-label']) !!}
-                    {!! Form::number('dig_conta',null,['class'=>'form-control']) !!}
-                    @if ($errors->has('dig_conta'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('dig_conta') }}</strong>
-                    </span>
-                    @endif
-                </div>
-                
-                <div class="form-group{{ $errors->has('tipo_conta') ? ' has-error' : '' }}">
-                    {!! Form::Label('tipo_conta', 'tipo_conta') !!}
-                    {!! Form::select('tipo_conta', ['1'=>'PJ','2'=>'PF'], null, ['class' => 'form-control','placeholder' => 'Selecione...']) !!}
-                    @if ($errors->has('tipo_conta'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('tipo_conta') }}</strong>
-                    </span>
-                    @endif
-                </div>
-                
-                <div class="form-group{{ $errors->has('ativo') ? ' has-error' : '' }}">
-                    {!! Form::Label('ativo', 'Ativa') !!}
-                    {!! Form::checkbox('ativo', 'Y', true) !!}
-                    @if ($errors->has('ativo'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('ativo') }}</strong>
-                    </span>
-                    @endif
-                </div>
-                
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group{{ $errors->has('agencia') ? ' has-error' : '' }}">
+                            {!! Form::label('agencia','Agencia',['class'=>'form-label']) !!}
+                            {!! Form::number('agencia',null,['class'=>'form-control']) !!}
+                            @if ($errors->has('agencia'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('agencia') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group{{ $errors->has('dig_ag') ? ' has-error' : '' }}">
+                            {!! Form::label('dig_ag','Digito Agencia',['class'=>'form-label']) !!}
+                            {!! Form::number('dig_ag',null,['class'=>'form-control']) !!}
+                            @if ($errors->has('dig_ag'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('dig_ag') }}</strong>
+                            </span>
+                            @endif
+                        </div>
 
-               
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group{{ $errors->has('nr_conta') ? ' has-error' : '' }}">
+                            {!! Form::label('nr_conta','Conta',['class'=>'form-label']) !!}
+                            {!! Form::number('nr_conta',null,['class'=>'form-control']) !!}
+                            @if ($errors->has('nr_conta'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('nr_conta') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group{{ $errors->has('dig_conta') ? ' has-error' : '' }}">
+                            {!! Form::label('dig_conta','Digito Conta',['class'=>'form-label']) !!}
+                            {!! Form::number('dig_conta',null,['class'=>'form-control']) !!}
+                            @if ($errors->has('dig_conta'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('dig_conta') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group{{ $errors->has('tipo_conta') ? ' has-error' : '' }}">
+                            {!! Form::Label('tipo_conta', 'tipo_conta') !!}
+                            {!! Form::select('tipo_conta', $tipoContas, null, ['class' => 'form-control','placeholder' => 'Selecione...']) !!}
+                            @if ($errors->has('tipo_conta'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('tipo_conta') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group{{ $errors->has('finalidade') ? ' has-error' : '' }}">
+                            <label>Finalidade:</label>
+                            <p>
+                                Pessoas Jurídica
+                                {!! Form::radio('finalidade', '1') !!}
+
+                                Pessoas Fisica
+                                {!! Form::radio('finalidade', '2') !!}
+                            </p>
+                            @if ($errors->has('finalidade'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('finalidade') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group{{ $errors->has('ativo') ? ' has-error' : '' }}">
+                            {!! Form::Label('ativo', 'Ativa') !!}
+                            {!! Form::checkbox('ativo', 'Y', true) !!}
+                            @if ($errors->has('ativo'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('ativo') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
             </div>
             <div class="box-footer">
                 <div class="form-group">
@@ -133,7 +167,7 @@
                     <a href="{{route('categ_index')}}" type="button" class="btn btn-default">Cancel</a>
                 </div>
             </div>
-             {!! Form::close() !!}
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

@@ -24,7 +24,9 @@ class CreateContasBancariasTable extends Migration
                 $table->integer('dig_ag');
                 $table->integer('nr_conta');
                 $table->integer('dig_conta');
-                $table->integer('tipo_conta');
+                
+                $table->integer('tipo_conta')->references('id')->on('tipo_contas');
+                $table->integer('finalidade');
                 $table->boolean('ativo');
                 $table->softDeletes();
                 $table->timestamps();

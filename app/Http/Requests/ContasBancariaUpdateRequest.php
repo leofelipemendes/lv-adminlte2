@@ -13,7 +13,7 @@ class ContasBancariaUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return TRUE;
     }
 
     /**

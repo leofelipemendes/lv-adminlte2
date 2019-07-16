@@ -7,37 +7,35 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\ContasBancariaCreateRequest;
-use App\Http\Requests\ContasBancariaUpdateRequest;
-use App\Repositories\ContasBancariaRepository;
-use App\Validators\ContasBancariaValidator;
-use App\Entities\Banco;
-use App\Entities\TipoConta;
+use App\Http\Requests\FinalidadeContaCreateRequest;
+use App\Http\Requests\FinalidadeContaUpdateRequest;
+use App\Repositories\FinalidadeContaRepository;
+use App\Validators\FinalidadeContaValidator;
 
 /**
- * Class ContasBancariasController.
+ * Class FinalidadeContasController.
  *
  * @package namespace App\Http\Controllers;
  */
-class ContasBancariasController extends Controller
+class FinalidadeContasController extends Controller
 {
     /**
-     * @var ContasBancariaRepository
+     * @var FinalidadeContaRepository
      */
     protected $repository;
 
     /**
-     * @var ContasBancariaValidator
+     * @var FinalidadeContaValidator
      */
     protected $validator;
 
     /**
-     * ContasBancariasController constructor.
+     * FinalidadeContasController constructor.
      *
-     * @param ContasBancariaRepository $repository
-     * @param ContasBancariaValidator $validator
+     * @param FinalidadeContaRepository $repository
+     * @param FinalidadeContaValidator $validator
      */
-    public function __construct(ContasBancariaRepository $repository, ContasBancariaValidator $validator)
+    public function __construct(FinalidadeContaRepository $repository, FinalidadeContaValidator $validator)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
@@ -51,63 +49,38 @@ class ContasBancariasController extends Controller
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $contasBancarias = $this->repository->all();
-        $bancos = \App\Entities\Banco::pluck('nome','id');
+        $finalidadeContas = $this->repository->all();
+
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $contasBancarias,
+                'data' => $finalidadeContas,
             ]);
         }
-        
-        return view('contasBancarias.index',[
-            'contasBancarias' => $contasBancarias,
-            'bancos' => $bancos,
-            'page_title' => 'ContasBancarias',
-            'page_description' => 'Lista de Contas Bancárias'
-        ]);
 
-
+        return view('finalidadeContas.index', compact('finalidadeContas'));
     }
-    
-    
-    public function create() {
-        
-        $contasBancarias = $this->repository->all();
-        $bancos = Banco::pluck('nome','id');
-        $tipoContas = TipoConta::pluck('nome','id');
-        return view('contasBancarias.contasbancarias',[
-            'contasBancarias' => $contasBancarias,
-            'bancos' => $bancos,
-            'tipoContas' => $tipoContas,
-            'page_title' => 'ContasBancarias',
-            'page_description' => 'Lista de Contas Bancárias'
-        ]);
-    }
-    
-    
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ContasBancariaCreateRequest $request
+     * @param  FinalidadeContaCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(ContasBancariaCreateRequest $request)
+    public function store(FinalidadeContaCreateRequest $request)
     {
-        dd($request->all());
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $contasBancarium = $this->repository->create($request->all());
+            $finalidadeContum = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'ContasBancaria created.',
-                'data'    => $contasBancarium->toArray(),
+                'message' => 'FinalidadeConta created.',
+                'data'    => $finalidadeContum->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -137,16 +110,16 @@ class ContasBancariasController extends Controller
      */
     public function show($id)
     {
-        $contasBancarium = $this->repository->find($id);
+        $finalidadeContum = $this->repository->find($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'data' => $contasBancarium,
+                'data' => $finalidadeContum,
             ]);
         }
 
-        return view('contasBancarias.show', compact('contasBancarium'));
+        return view('finalidadeContas.show', compact('finalidadeContum'));
     }
 
     /**
@@ -158,32 +131,32 @@ class ContasBancariasController extends Controller
      */
     public function edit($id)
     {
-        $contasBancarium = $this->repository->find($id);
+        $finalidadeContum = $this->repository->find($id);
 
-        return view('contasBancarias.edit', compact('contasBancarium'));
+        return view('finalidadeContas.edit', compact('finalidadeContum'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  ContasBancariaUpdateRequest $request
+     * @param  FinalidadeContaUpdateRequest $request
      * @param  string            $id
      *
      * @return Response
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(ContasBancariaUpdateRequest $request, $id)
+    public function update(FinalidadeContaUpdateRequest $request, $id)
     {
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $contasBancarium = $this->repository->update($request->all(), $id);
+            $finalidadeContum = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'ContasBancaria updated.',
-                'data'    => $contasBancarium->toArray(),
+                'message' => 'FinalidadeConta updated.',
+                'data'    => $finalidadeContum->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -221,11 +194,11 @@ class ContasBancariasController extends Controller
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'ContasBancaria deleted.',
+                'message' => 'FinalidadeConta deleted.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'ContasBancaria deleted.');
+        return redirect()->back()->with('message', 'FinalidadeConta deleted.');
     }
 }

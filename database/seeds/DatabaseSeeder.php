@@ -11,8 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('tipo_contas')->delete();
+        DB::table('finalidade_contas')->delete();
+        
         $this->call([
-        UserTableSeeder::class,
+        TipoContaTableSeeder::class,
+        FinalidadeContasTableSeeder::class,
 //        EstadoTableSeeder::class,
 //        MunicipiosTableSeeder::class,
         ]);
