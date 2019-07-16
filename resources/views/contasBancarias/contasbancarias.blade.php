@@ -42,7 +42,6 @@
                 @else
                 {!! Form::open(['route' => 'cbanc_store','class' => 'form']) !!}
                 @endif
-
                 <div class="form-group{{ $errors->has('descricao') ? ' has-error' : '' }}">
                     {!! Form::label('descricao','Descrição',['class'=>'form-label']) !!}
                     {!! Form::text('descricao',null,['class'=>'form-control']) !!}
@@ -53,12 +52,12 @@
                     @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('bancos') ? ' has-error' : '' }}">
-                    {!! Form::Label('bancos', 'Banco') !!}
-                    {!! Form::select('bancos', $bancos, null, ['class' => 'form-control','placeholder' => 'Selecione...']) !!}
-                    @if ($errors->has('bancos'))
+                <div class="form-group{{ $errors->has('idbanco') ? ' has-error' : '' }}">
+                    {!! Form::Label('idbanco', 'Banco') !!}
+                    {!! Form::select('idbanco', $bancos, null, ['class' => 'form-control','placeholder' => 'Selecione...']) !!}
+                    @if ($errors->has('idbanco'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('bancos') }}</strong>
+                        <strong>{{ $errors->first('idbanco') }}</strong>
                     </span>
                     @endif
                 </div>
@@ -128,11 +127,10 @@
                         <div class="form-group{{ $errors->has('finalidade') ? ' has-error' : '' }}">
                             <label>Finalidade:</label>
                             <p>
-                                Pessoas Jurídica
-                                {!! Form::radio('finalidade', '1') !!}
-
-                                Pessoas Fisica
-                                {!! Form::radio('finalidade', '2') !!}
+                            @foreach($finalidadeConta as $finalidade)
+                                {{$finalidade->descricao}}
+                                {!! Form::radio('finalidade', $finalidade->id) !!}
+                            @endforeach
                             </p>
                             @if ($errors->has('finalidade'))
                             <span class="help-block">
@@ -146,7 +144,7 @@
                     <div class="col-lg-6">
                         <div class="form-group{{ $errors->has('ativo') ? ' has-error' : '' }}">
                             {!! Form::Label('ativo', 'Ativa') !!}
-                            {!! Form::checkbox('ativo', 'Y', true) !!}
+                            {!! Form::checkbox('ativo', '1', true) !!}
                             @if ($errors->has('ativo'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('ativo') }}</strong>

@@ -29,6 +29,7 @@ class ContasBancaria extends Model implements Transformable
         'nr_conta',
         'dig_conta',
         'tipo_conta',
+        'finalidade',
         'ativo'
     ];
 

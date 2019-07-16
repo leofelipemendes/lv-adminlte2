@@ -13,6 +13,7 @@ use App\Repositories\ContasBancariaRepository;
 use App\Validators\ContasBancariaValidator;
 use App\Entities\Banco;
 use App\Entities\TipoConta;
+use App\Entities\FinalidadeConta;
 
 /**
  * Class ContasBancariasController.
@@ -62,7 +63,6 @@ class ContasBancariasController extends Controller
         
         return view('contasBancarias.index',[
             'contasBancarias' => $contasBancarias,
-            'bancos' => $bancos,
             'page_title' => 'ContasBancarias',
             'page_description' => 'Lista de Contas Bancárias'
         ]);
@@ -76,10 +76,12 @@ class ContasBancariasController extends Controller
         $contasBancarias = $this->repository->all();
         $bancos = Banco::pluck('nome','id');
         $tipoContas = TipoConta::pluck('nome','id');
+        $finalidadeConta = FinalidadeConta::all();
         return view('contasBancarias.contasbancarias',[
             'contasBancarias' => $contasBancarias,
             'bancos' => $bancos,
             'tipoContas' => $tipoContas,
+            'finalidadeConta' => $finalidadeConta,
             'page_title' => 'ContasBancarias',
             'page_description' => 'Lista de Contas Bancárias'
         ]);
@@ -98,7 +100,6 @@ class ContasBancariasController extends Controller
      */
     public function store(ContasBancariaCreateRequest $request)
     {
-        dd($request->all());
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
@@ -158,9 +159,19 @@ class ContasBancariasController extends Controller
      */
     public function edit($id)
     {
-        $contasBancarium = $this->repository->find($id);
+        $contasBancarias = $this->repository->find($id);
+        $bancos = Banco::pluck('nome','id');
+        $tipoContas = TipoConta::pluck('nome','id');
+        $finalidadeConta = FinalidadeConta::all();
 
-        return view('contasBancarias.edit', compact('contasBancarium'));
+        return view('contasBancarias.contasbancarias',[
+            'contasbancarias' => $contasBancarias,
+            'bancos' => $bancos,
+            'tipoContas' => $tipoContas,
+            'finalidadeConta' => $finalidadeConta,
+            'page_title' => 'ContasBancarias',
+            'page_description' => 'Lista de Contas Bancárias'
+        ]);
     }
 
     /**

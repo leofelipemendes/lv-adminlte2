@@ -43,13 +43,11 @@
     <div class="box-body">
         <table class="table table-bordered">
             <tr>
-                <th>Nome</th>
                 <th>Descrição</th>
                 <th></th>
             </tr>
             @foreach($contasBancarias as $contas)
             <tr>
-                <td>{{ $contas->nome }}</td>
                 <td>{{ $contas->descricao }}</td>
                 <td>
                     <a href="{{ route('cbanc_edit',['id'=>$contas->id])}}">
@@ -58,9 +56,6 @@
                     <a href="{{route('cbanc_disable',['id'=>$contas->id])}}">
                         <i class="fa fa-minus-square"></i>
                     </a>
-                    
-                    
-                    
                 </td>
             </tr>
             @endforeach
