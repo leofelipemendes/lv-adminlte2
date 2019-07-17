@@ -193,7 +193,7 @@ class ContasBancariasController extends Controller
             $contasBancarium = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'ContasBancaria updated.',
+                'message' => 'Conta Bancaria updated.',
                 'data'    => $contasBancarium->toArray(),
             ];
 
@@ -202,7 +202,7 @@ class ContasBancariasController extends Controller
                 return response()->json($response);
             }
 
-            return redirect()->back()->with('message', $response['message']);
+            return redirect()->route('cbanc_index')->with('success', $response['message']);
         } catch (ValidatorException $e) {
 
             if ($request->wantsJson()) {
@@ -225,18 +225,18 @@ class ContasBancariasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function disable($id)
     {
         $deleted = $this->repository->delete($id);
 
         if (request()->wantsJson()) {
 
             return response()->json([
-                'message' => 'ContasBancaria deleted.',
+                'message' => 'Cliente deleted.',
                 'deleted' => $deleted,
             ]);
         }
-
-        return redirect()->back()->with('message', 'ContasBancaria deleted.');
+        
+        return redirect()->route('cbanc_index')->with('success', 'Deleted!');
     }
 }
