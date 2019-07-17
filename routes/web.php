@@ -33,6 +33,13 @@ Route::put('/ccusto/update/{id}','CentroCustosController@update')->name('ccusto_
 Route::get('/ccusto/disable/{id}','CentroCustosController@disable')->name('ccusto_disable');
 Route::post('/ccusto/store','CentroCustosController@store')->name('ccusto_store');
 
+Route::get('/pcontas','PlanoContasController@index')->name('pcontas_index');
+Route::get('/pcontas/create','PlanoContasController@create')->name('pcontas_create');
+Route::get('/pcontas/edit/{id}','PlanoContasController@edit')->name('pcontas_edit');
+Route::put('/pcontas/update/{id}','PlanoContasController@update')->name('pcontas_update');
+Route::get('/pcontas/disable/{id}','PlanoContasController@disable')->name('pcontas_disable');
+Route::post('/pcontas/store','PlanoContasController@store')->name('pcontas_store');
+
 Route::get('/cbanc','ContasBancariasController@index')->name('cbanc_index');
 Route::get('/cbanc/create','ContasBancariasController@create')->name('cbanc_create');
 Route::get('/cbanc/edit/{id}','ContasBancariasController@edit')->name('cbanc_edit');
