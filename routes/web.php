@@ -26,6 +26,13 @@ Route::put('/deptos/update/{id}','DepartamentosController@update')->name('depto_
 Route::get('/deptos/disable/{id}','DepartamentosController@disable')->name('depto_disable');
 Route::post('/deptos/store','DepartamentosController@store')->name('depto_store');
 
+Route::get('/ccusto','CentroCustosController@index')->name('ccusto_index');
+Route::get('/ccusto/create','CentroCustosController@create')->name('ccusto_create');
+Route::get('/ccusto/edit/{id}','CentroCustosController@edit')->name('ccusto_edit');
+Route::put('/ccusto/update/{id}','CentroCustosController@update')->name('ccusto_update');
+Route::get('/ccusto/disable/{id}','CentroCustosController@disable')->name('ccusto_disable');
+Route::post('/ccusto/store','CentroCustosController@store')->name('ccusto_store');
+
 Route::get('/cbanc','ContasBancariasController@index')->name('cbanc_index');
 Route::get('/cbanc/create','ContasBancariasController@create')->name('cbanc_create');
 Route::get('/cbanc/edit/{id}','ContasBancariasController@edit')->name('cbanc_edit');

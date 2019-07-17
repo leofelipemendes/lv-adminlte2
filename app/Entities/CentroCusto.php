@@ -8,11 +8,11 @@ use Prettus\Repository\Traits\TransformableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Categoria.
+ * Class CentroCusto.
  *
  * @package namespace App\Entities;
  */
-class Categoria extends Model implements Transformable
+class CentroCusto extends Model implements Transformable
 {
     use TransformableTrait,SoftDeletes;
 

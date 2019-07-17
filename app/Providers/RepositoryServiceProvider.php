@@ -34,6 +34,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\ContasBancariaRepository::class, \App\Repositories\ContasBancariaRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\TipoContaRepository::class, \App\Repositories\TipoContaRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\FinalidadeContaRepository::class, \App\Repositories\FinalidadeContaRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\CentroCustoRepository::class, \App\Repositories\CentroCustoRepositoryEloquent::class);
         //:end-bindings:
     }
 }

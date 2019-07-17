@@ -38,6 +38,7 @@
         <li class="active"><a href="{{ route('categ_index') }}"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
         <li class="active"><a href="{{ route('bancos_index') }}"><i class="fa fa-link"></i> <span>Bancos</span></a></li>
         <li class="active"><a href="{{ route('cbanc_index') }}"><i class="fa fa-link"></i> <span>Contas Bancarias</span></a></li>
+        <li class="active"><a href="{{ route('ccusto_index') }}"><i class="fa fa-link"></i> <span>Centro Custo</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>

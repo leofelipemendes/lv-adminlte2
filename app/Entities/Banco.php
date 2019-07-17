@@ -5,6 +5,7 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Banco.
@@ -13,7 +14,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  */
 class Banco extends Model implements Transformable
 {
-    use TransformableTrait;
+    use TransformableTrait,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
