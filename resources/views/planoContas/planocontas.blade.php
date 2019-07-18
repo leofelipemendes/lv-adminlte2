@@ -37,10 +37,10 @@
                     {{ session()->get('success') }}  
                 </div><br />
                 @endif
-                @if(isset($categorias))
-                {!! Form::model($categorias,['route' => ['categ_update',$categorias],'class' => 'form','method' => 'put']) !!}
+                @if(isset($planoContas))
+                {!! Form::model($planoContas,['route' => ['pcontas_update',$planoContas],'class' => 'form','method' => 'put']) !!}
                 @else
-                {!! Form::open(['route' => 'categ_store','class' => 'form']) !!}
+                {!! Form::open(['route' => 'pcontas_store','class' => 'form']) !!}
                 @endif
                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
                     {!! Form::label('nome','Nome',['class'=>'form-label']) !!}
@@ -66,7 +66,7 @@
             <div class="box-footer">
                 <div class="form-group">
                     {!! Form::submit('enviar',['class'=>'btn btn-primary']) !!}
-                    <a href="{{route('categ_index')}}" type="button" class="btn btn-default">Cancel</a>
+                    <a href="{{route('pcontas_index')}}" type="button" class="btn btn-default">Cancel</a>
                 </div>
             </div>
              {!! Form::close() !!}

@@ -14,38 +14,6 @@
             <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/.env</file>
             <file>file:/C:/Users/Leo/Documents/Desenvolvimento/lv-adminlte2/routes/web.php</file>
         </group>
-        <group>
-            <file>file:/home/leo/dev/layout/app/Entities/TipoConta.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Requests/ContasBancariaCreateRequest.php</file>
-            <file>file:/home/leo/dev/layout/app/Entities/Banco.php</file>
-            <file>file:/home/leo/dev/layout/resources/views/layouts/sidebar.blade.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Controllers/FornecedoresController.php</file>
-            <file>file:/home/leo/dev/layout/resources/views/clientes/clientes.blade.php</file>
-            <file>file:/home/leo/dev/layout/app/Repositories/ClienteRepositoryEloquent.php</file>
-            <file>file:/home/leo/dev/layout/database/seeds/FinalidadeContasTableSeeder.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Requests/ClienteCreateRequest.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Controllers/ContasBancariasController.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Requests/ClienteUpdateRequest.php</file>
-            <file>file:/home/leo/dev/layout/database/migrations/2019_07_13_055801_create_contas_bancarias_table.php</file>
-            <file>file:/home/leo/dev/layout/resources/views/contasBancarias/contasbancarias.blade.php</file>
-            <file>file:/home/leo/dev/layout/database/seeds/UserTableSeeder.php</file>
-            <file>file:/home/leo/dev/layout/resources/views/partials/estado_municipios.blade.php</file>
-            <file>file:/home/leo/dev/layout/database/migrations/2019_07_14_000659_create_tipo_contas_table.php</file>
-            <file>file:/home/leo/dev/layout/app/Entities/Cliente.php</file>
-            <file>file:/home/leo/dev/layout/app/Validators/ClienteValidator.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Requests/ContasBancariaUpdateRequest.php</file>
-            <file>file:/home/leo/dev/layout/database/migrations/2019_07_10_215001_create_clientes_table.php</file>
-            <file>file:/home/leo/dev/layout/routes/web.php</file>
-            <file>file:/home/leo/dev/layout/resources/views/fornecedores/fornecedores.blade.php</file>
-            <file>file:/home/leo/dev/layout/app/Entities/ContasBancaria.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Requests/FornecedorCreateRequest.php</file>
-            <file>file:/home/leo/dev/layout/database/seeds/MunicipiosTableSeeder.php</file>
-            <file>file:/home/leo/dev/layout/database/seeds/DatabaseSeeder.php</file>
-            <file>file:/home/leo/dev/layout/database/seeds/EstadoTableSeeder.php</file>
-            <file>file:/home/leo/dev/layout/database/seeds/TipoContaTableSeeder.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Controllers/ClientesController.php</file>
-            <file>file:/home/leo/dev/layout/app/Http/Controllers/CategoriasController.php</file>
-            <file>file:/home/leo/dev/layout/database/migrations/2019_07_14_022907_create_finalidade_contas_table.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

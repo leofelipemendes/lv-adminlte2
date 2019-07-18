@@ -146,9 +146,9 @@ class PlanoContasController extends Controller
      */
     public function edit($id)
     {
-        $planoContum = $this->repository->find($id);
+        $planoContas = $this->repository->find($id);
 
-        return view('planoContas.edit', compact('planoContum'));
+        return view('planoContas.edit', compact('planoContas'));
     }
 
     /**
